@@ -3,10 +3,7 @@ using SchoolManagement;
 using Microsoft.EntityFrameworkCore;
 
 
-Console.WriteLine("Hello, School Management!");
-
-
-
+Console.WriteLine("Hello,Welcome to School Management!");
 
 
 /* ---------------------------
@@ -102,9 +99,6 @@ if(s1 != null)
     context.SaveChanges();
 }
 */
-
-
-
 
 
 /* -------------------------------------------------------------------------
@@ -243,8 +237,7 @@ context.SaveChanges();
 ApplicationDbContext context = new ApplicationDbContext();
 var course = context.Courses.Include(x => x.Topics).FirstOrDefault();
 
-// [?Q : Confused, Both of them are working]
-// course.Topics[3].Name = "up 1";  // [NOTE : Wrong way to update internal elements.]
+// course.Topics[3].Name = "up 1";
 course.Topics.ToList()[3].Name = "up 2";
 course.Topics.ToList()[4].Name = "up to dlt 1";
 course.Topics.ToList()[4].Duration = 0;
@@ -254,7 +247,6 @@ context.SaveChanges();
 
 /* ---------- Delete ---------- */
 
-// [NOTE: Course delete korle automatic Course Id wise Topics oe delete hoye jabe.]
 //___Table : Courses, Topics : (Course Delete -> Topics will be deleted automatically according to Course Id)___
 /*
 ApplicationDbContext context = new ApplicationDbContext();
@@ -276,17 +268,9 @@ context.SaveChanges();
 */
 
 
-
-
-
 /* ----------------------------------------------------------------------- 
 Topic : Table Relationship : Many to Many (Table : Course, Topic, Student)
 -------------------------------------------------------------------------- */
-/* [NOTE: Pivot Table : CourseStudent
-                      - Table Relationship : Many to Many 
-                      - Table : Course, Topic, Student
-   ]
-*/
 
 /* ---------- Insert ---------- */
 

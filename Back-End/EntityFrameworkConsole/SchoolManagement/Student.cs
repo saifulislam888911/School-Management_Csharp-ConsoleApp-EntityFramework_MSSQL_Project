@@ -14,6 +14,6 @@ namespace SchoolManagement
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
 
-        public List<CourseStudent> Courses { get; set; }    // [NOTE : CourseStudent is middle table here.]
+        public List<CourseStudent> Courses { get; set; }
     }
 }

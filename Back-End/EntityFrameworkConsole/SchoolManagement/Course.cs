@@ -13,6 +13,6 @@ namespace SchoolManagement
         public uint Fees { get; set; }
 
         public List<Topic> Topics { get; set; }
-        public List<CourseStudent> Students { get; set; }   // [NOTE : CourseStudent is middle table here.]
+        public List<CourseStudent> Students { get; set; }
     }
 }
