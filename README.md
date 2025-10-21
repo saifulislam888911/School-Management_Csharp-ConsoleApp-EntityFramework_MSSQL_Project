@@ -4,8 +4,8 @@ Summary : C#, Console App, Entity Framework, MSSQL.
 Version :
 - SDK : Microsoft.NET.Sdk (.NET 9.0)
 - NuGet Package (NuGet Dependency) :
-    i. Microsoft.EntityFrameworkCore.SqlServer (v9.0.10)
-    ii. Microsoft.EntityFrameworkCore.Design (v9.0.10)
+    i. Microsoft.EntityFrameworkCore.SqlServer (v9.0.10) ;
+    ii. Microsoft.EntityFrameworkCore.Design (v9.0.10) ;
 
 
 # Project : School-Management-System
@@ -13,12 +13,12 @@ Helped From : DevSkill Online-Class, Self-Practice, Self-Study.
 
 
 # Branch : ("Development-1")
-Development : For Updating new features. Always Upto Date. Clean Codes (Delete Comments & Notes). 
+Development : For Updating new features. Always Upto Date. Clean Codes (Delete Comments & Notes).  
 
 
 # DevSkill : Professional Programming with C# :
 Batch : 15 ;
-Class : 19 ;
+Class : 19, 20 (20.1, 20.2, 20.3) ;
 
 
 # Website :
