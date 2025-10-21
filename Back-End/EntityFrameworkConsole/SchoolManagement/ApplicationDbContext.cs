@@ -13,7 +13,7 @@ namespace SchoolManagement
 
         public ApplicationDbContext()
         {
-            _connectionString = "Server=ASUS-TUF\\SQLEXPRESS;Database=SchoolManagement;" +
+            _connectionString = "Server=ASUS-TUF\\SQLEXPRESS;Database=SchoolManagementDb;" +
     "User Id=Practice_Admin;Password=12345678;Trust Server Certificate=True;";
         }
 
@@ -41,8 +41,8 @@ namespace SchoolManagement
 
 
             /* ---------------------------------------------------------------- 
-             Topic : Table Relationship : Many to Many (Table : Student, Course)            
-             ------------------------------------------------------------------- */
+            Topic : Table Relationship : Many to Many (Table : Student, Course)            
+            ------------------------------------------------------------------- */
 
             /* [NOTE: Pivot Table 
                       - Table Relationship : Many to Many 
@@ -52,8 +52,44 @@ namespace SchoolManagement
             */
             modelBuilder.Entity<CourseStudent>()
                 .HasKey((x) => new { x.CourseId, x.StudentId });  // [NOTE: Lambda Method and Anonymouse Object are being used here.]
-
+            
             modelBuilder.Entity<CourseStudent>().ToTable("CourseStudents");
+            
+
+
+
+
+            /* -------------------------------------------------------------------------------------- 
+            Topic : Fluent API : Table Relationship : One to Many, One to One (Table : Course, Topic)
+            ----------------------------------------------------------------------------------------- */
+            
+            modelBuilder.Entity<Course>()
+                .HasMany(x => x.Topics)
+                    .WithOne(y => y.Course)
+                        .HasForeignKey(z => z.CourseId);
+
+
+
+
+
+            /* ------------------------------------------------------------------------------------ 
+            Topic : Fluent API : Table Relationship : Many to Many (Table : Course, Topic, Student)
+            --------------------------------------------------------------------------------------- */
+
+            /* [NOTE: - Table Relationship : Many to Many 
+                      - Table : Student, Course
+                      - Always Apply Relationship From "Middle Table" through "Fluent API" 
+               ]
+            */
+            modelBuilder.Entity<CourseStudent>()
+                .HasOne(x => x.Student)
+                    .WithMany(y => y.Courses)
+                        .HasForeignKey(z => z.StudentId);
+
+            modelBuilder.Entity<CourseStudent>()
+                .HasOne(x => x.Course)
+                    .WithMany(y => y.Students)
+                        .HasForeignKey(z => z.CourseId);
         }
 
 

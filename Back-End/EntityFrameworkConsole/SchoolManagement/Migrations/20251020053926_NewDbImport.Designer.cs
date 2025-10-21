@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagement;
 
@@ -11,9 +12,11 @@ using SchoolManagement;
 namespace SchoolManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251020053926_NewDbImport")]
+    partial class NewDbImport
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,21 +43,6 @@ namespace SchoolManagement.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("SchoolManagement.CourseStudent", b =>
-                {
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CourseId", "StudentId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("CourseStudents", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagement.Student", b =>
@@ -109,25 +97,6 @@ namespace SchoolManagement.Migrations
                     b.ToTable("Topics", (string)null);
                 });
 
-            modelBuilder.Entity("SchoolManagement.CourseStudent", b =>
-                {
-                    b.HasOne("SchoolManagement.Course", "Course")
-                        .WithMany("Students")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SchoolManagement.Student", "Student")
-                        .WithMany("Courses")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("SchoolManagement.Topic", b =>
                 {
                     b.HasOne("SchoolManagement.Course", "Course")
@@ -141,14 +110,7 @@ namespace SchoolManagement.Migrations
 
             modelBuilder.Entity("SchoolManagement.Course", b =>
                 {
-                    b.Navigation("Students");
-
                     b.Navigation("Topics");
-                });
-
-            modelBuilder.Entity("SchoolManagement.Student", b =>
-                {
-                    b.Navigation("Courses");
                 });
 #pragma warning restore 612, 618
         }

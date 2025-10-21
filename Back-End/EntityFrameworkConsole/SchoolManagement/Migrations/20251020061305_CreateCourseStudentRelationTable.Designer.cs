@@ -12,15 +12,15 @@ using SchoolManagement;
 namespace SchoolManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251015143812_Create CourseStudent Relation")]
-    partial class CreateCourseStudentRelation
+    [Migration("20251020061305_CreateCourseStudentRelationTable")]
+    partial class CreateCourseStudentRelationTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.9")
+                .HasAnnotation("ProductVersion", "9.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
