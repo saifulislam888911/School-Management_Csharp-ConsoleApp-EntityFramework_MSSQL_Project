@@ -1,0 +1,39 @@
+# Nuget Package :
+
+	- Microsoft.EntityFrameworkCore.SqlServer (version : 9.0.10)
+	- Microsoft.EntityFrameworkCore.Design (version : 9.0.10)
+
+
+# Connection String :
+
+	- // "Server=ASUS-TUF\\SQLEXPRESS;Database=SchoolManagement;User Id=Practice_Admin;Password=12345678;Trust Server Certificate=True;";
+
+	- // "BlogDbConnectionString": "Server=ASUS-TUF\\SQLEXPRESS;Database=BlogManagementDb;Trusted_Connection=True"
+
+	- // "BlogDbConnectionString": "Server=ASUS-TUF\\SQLEXPRESS;Database=BlogManagementDb;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;"
+
+
+# Migrations Command :
+
+	i. Adding / Creating Migrations : (Creating : Database, Tables, Adding/Removing Columns)
+	
+		- dotnet ef migrations add "Add Student Table" --project SchoolManagement --context ApplicationDbContext
+
+		- dotnet ef database update --project SchoolManagement --context ApplicationDbContext
+
+
+	ii. Deleting / Reverting Migrations : (Roll back to a migration, and bellow it - all migrations will be automatically deleted)
+
+		- dotnet ef database update AddedAddressInStudentTable --project SchoolManagement --context ApplicationDbContext
+			(Database theke migrations history & Tables delete hobe : Database ae AddedAddressInStudentTable command err pore jei koyta migration selo, will be removed From Database.)
+
+		- dotnet ef migrations remove --project SchoolManagement --context ApplicationDbContext
+			(Visual Studio theke migrations file delete hobe : AddedAddressInStudentTable etar pore jei koyta migration selo, thik shey koyber ei command ta run korte hobe.
+			 Tahole serial wise nich theke uporer dike migrations gulo remove hote tahkbe from project file, 
+			 AddedAddressInStudentTable command taar agg porjonto.)
+
+
+# Entity Framework tools : Migration Command :
+
+	- Add-Migration "Initial Migration"
+	- Update-Database
