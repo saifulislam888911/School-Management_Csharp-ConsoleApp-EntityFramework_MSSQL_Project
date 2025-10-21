@@ -18,7 +18,7 @@ DevWithNotes : For Pushing working codes alongside with Comments & Notes. Always
 
 # DevSkill : Professional Programming with C# :
 Batch : 15 ;
-Class : 19, 20 (20.2) ;
+Class : 19, 20 (20.1, 20.2) ;
 
 
 # Website :
