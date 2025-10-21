@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace SchoolManagement
 {
-    public class Topic
+    public class CourseStudent
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public uint Duration { get; set; }
-
         public int CourseId { get; set; }
+        public int StudentId { get; set; }
 
         public Course Course { get; set; }
+        public Student Student { get; set; }
     }
 }

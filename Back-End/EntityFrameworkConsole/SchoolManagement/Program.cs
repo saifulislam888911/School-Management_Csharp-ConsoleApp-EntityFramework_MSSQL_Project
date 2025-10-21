@@ -21,6 +21,7 @@ Student student = new Student();
 student.Name = "AAA";
 student.Cgpa = 3.5;
 student.DateOfBirth = new DateTime(2000, 12, 30);
+// student.Address = "Dhaka";
 
 ApplicationDbContext context = new ApplicationDbContext();
 context.Students.Add(student);
@@ -30,23 +31,24 @@ context.SaveChanges();
 //___Type : 2___
 /*
 ApplicationDbContext context = new ApplicationDbContext();
-
 context.Students.Add(new Student()
 {
-    Name = "Mr DDD",
+    Name = "BBB",
     Cgpa = 2.5,
-    DateOfBirth = new DateTime(2000, 12, 30)
+    DateOfBirth = new DateTime(2000, 12, 30),
+    // Address = "Dhaka"
 });
 context.Students.Add(new Student
 {
-    Name = "Mr EEE",
+    Name = "CCC",
     Cgpa = 4,
-    DateOfBirth = new DateTime(2000, 12, 31)
+    DateOfBirth = new DateTime(2000, 12, 31),
+    // Address = "Dhaka"
 });
 context.Students.Add(new Student
-{ Name = "Mr FFF", Cgpa = 4, DateOfBirth = new DateTime(2000, 12, 30) });
-context.Students.Add(new Student() { Name = "Mr BBB", Cgpa = 3.5, DateOfBirth = new DateTime(2000, 12, 30) });
-context.Students.Add(new Student { Name = "Mr CCC", Cgpa = 2.5, DateOfBirth = new DateTime(2000, 12, 31) });
+{ Name = "DDD", Cgpa = 4, DateOfBirth = new DateTime(2000, 12, 30), Address = "Dhaka" });
+context.Students.Add(new Student() { Name = "Mr BBB", Cgpa = 3.5, DateOfBirth = new DateTime(2000, 12, 30), Address = "Dhaka" });
+context.Students.Add(new Student { Name = "Mr CCC", Cgpa = 2.5, DateOfBirth = new DateTime(2000, 12, 31), Address = "Dhaka" });
 context.SaveChanges();
 */
 
@@ -66,7 +68,7 @@ List<Student> students = context.Students.ToList();
 
 foreach (var student in students)
 {
-    Console.WriteLine($"Name : {student.Name}; Cgpa : {student.Cgpa}");
+    Console.WriteLine($"Name : {student.Name}; Cgpa : {student.Cgpa};");
 }
 */
 
@@ -105,9 +107,9 @@ if(s1 != null)
 
 
 
-/* -------------------------------------------------
-Topic : Table Relationship : One to Many, One to One
----------------------------------------------------- */
+/* -------------------------------------------------------------------------
+Topic : Table Relationship : One to Many, One to One (Table : Course, Topic)
+---------------------------------------------------------------------------- */
 
 /* ---------- Insert ---------- */
 
@@ -131,8 +133,8 @@ course.Topics.Add(new Topic
 /*
 Course course = new Course()
 {
-    Title = "C#",
-    Fees = 8000,
+    Title = "C# Crash",
+    Fees = 4000,
 };
 
 course.Topics = new List<Topic>()
@@ -140,7 +142,7 @@ course.Topics = new List<Topic>()
     new Topic
     {
         Name = "Getting Started",
-        Duration = 2
+        Duration = 1
     } 
 };
 */
@@ -149,12 +151,13 @@ course.Topics = new List<Topic>()
 /*
 var course = new Course()
 {
-    Title = "t 4",
-    Fees = 8000,
+    Title = "C# Beginner to Advanced",
+    Fees = 15000,
     Topics = new List<Topic>()
     {
-        new Topic { Name = "t 4.1", Duration = 2 },
-        new Topic { Name = "t 4.2", Duration = 1 }
+        new Topic { Name = "Basic", Duration = 1 },
+        new Topic { Name = "Intermediate", Duration = 1 },
+        new Topic { Name = "Advanced", Duration = 1 }
     }
 };
 */
@@ -269,5 +272,50 @@ var course = context.Courses.Include(x => x.Topics).FirstOrDefault();
 var topic5 = course.Topics[4];
 
 course.Topics.Remove(topic5);
+context.SaveChanges();
+*/
+
+
+
+
+
+/* ----------------------------------------------------------------------- 
+Topic : Table Relationship : Many to Many (Table : Course, Topic, Student)
+-------------------------------------------------------------------------- */
+/* [NOTE: Pivot Table : CourseStudent
+                      - Table Relationship : Many to Many 
+                      - Table : Course, Topic, Student
+   ]
+*/
+
+/* ---------- Insert ---------- */
+
+/*
+var course2 = new Course()
+{
+    Title = "ASP)",
+    Fees = 30000,
+    Topics = new List<Topic>()
+    {
+        new Topic() { Name = "Getting Start", Duration = 1 },
+        new Topic() { Name = "Basic", Duration = 1 }
+    },
+    Students = new List<CourseStudent>()
+    {
+        new CourseStudent()
+        {
+            Student = new Student() { Name = "kkk", Cgpa = 2.9, Address = "Dhaka", DateOfBirth = new DateTime(2000, 01, 01) }
+        },
+        new CourseStudent()
+        {
+            Student = new Student() { Name = "lll", Cgpa = 3.4, Address = "Dhaka", DateOfBirth = new DateTime(2000, 01, 01) }
+        }
+    }
+};
+*/
+
+/*
+ApplicationDbContext context = new ApplicationDbContext();
+context.Courses.Add(course2);
 context.SaveChanges();
 */
