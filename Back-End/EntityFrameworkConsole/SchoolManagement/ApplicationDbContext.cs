@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace SchoolManagement
 {
     public class ApplicationDbContext : DbContext
@@ -30,9 +29,11 @@ namespace SchoolManagement
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Topic>().ToTable("Topics");
         }
 
 
         public DbSet<Student> Students { get; set; }
+        public DbSet<Course> Courses { get; set; }
     }
 }

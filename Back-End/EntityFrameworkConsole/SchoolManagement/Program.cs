@@ -100,3 +100,174 @@ if(s1 != null)
     context.SaveChanges();
 }
 */
+
+
+
+
+
+/* -------------------------------------------------
+Topic : Table Relationship : One to Many, One to One
+---------------------------------------------------- */
+
+/* ---------- Insert ---------- */
+
+//___Type : 1___
+/*
+Course course = new Course()
+{
+    Title = "C#",
+    Fees = 8000
+};
+
+course.Topics = new List<Topic>();
+course.Topics.Add(new Topic
+{
+    Name = "Getting Started",
+    Duration = 2
+});
+*/
+
+//___Type : 2___
+/*
+Course course = new Course()
+{
+    Title = "C#",
+    Fees = 8000,
+};
+
+course.Topics = new List<Topic>()
+{
+    new Topic
+    {
+        Name = "Getting Started",
+        Duration = 2
+    } 
+};
+*/
+
+//___Type : 3___
+/*
+var course = new Course()
+{
+    Title = "t 4",
+    Fees = 8000,
+    Topics = new List<Topic>()
+    {
+        new Topic { Name = "t 4.1", Duration = 2 },
+        new Topic { Name = "t 4.2", Duration = 1 }
+    }
+};
+*/
+
+/*
+ApplicationDbContext context = new ApplicationDbContext();
+context.Courses.Add(course);
+context.SaveChanges();
+*/
+
+
+/* ---------- Get ---------- */
+
+//___Table : Courses : (Get All)___
+/*
+ApplicationDbContext context = new ApplicationDbContext();
+List<Course> courses = context.Courses.ToList();
+
+foreach (var course in courses)
+{
+    Console.WriteLine($"Course Id : {course.Id}; Course Title : {course.Title}; Course Fees : {course.Fees}");
+}
+*/
+
+//___Table : Courses, Topics : (Get All)___
+/*
+ApplicationDbContext context = new ApplicationDbContext();
+var courses = context.Courses.Include(x => x.Topics).ToList();
+
+foreach (var course in courses)
+{
+    Console.WriteLine($"Course Id : {course.Id}; Course Title : {course.Title}; Course Fees : {course.Fees}");
+    Console.WriteLine(" Topics ===>");
+
+    if (course.Topics != null)
+    {
+        foreach (var topic in course.Topics)
+        {
+            Console.WriteLine($"    Topic ID : {topic.Id}, Name : {topic.Name}, Duration : {topic.Duration} ;");
+        }
+    }
+
+    Console.WriteLine();
+}
+*/
+
+//___Table : Courses, Topics : (Get by Element)___
+/*
+ApplicationDbContext context = new ApplicationDbContext();
+var course = context.Courses.Include(x => x.Topics).FirstOrDefault();
+
+Console.WriteLine($"Course Id : {course.Id}; Course Title : {course.Title}; Course Fees : {course.Fees}");
+Console.WriteLine(" Topics ===>");
+
+if(course.Topics != null)
+{
+    foreach (var topic in course.Topics)
+    {
+        Console.WriteLine($"Topic ID : {topic.Id}, Name : {topic.Name}, Duration : {topic.Duration} ;");
+    }
+}
+*/
+
+
+/* ---------- Update ---------- */
+
+//___Table : Topics : (New Topic Adding According to Course Id)___
+/*
+ApplicationDbContext context = new ApplicationDbContext();
+var course = context.Courses.Include(x => x.Topics).FirstOrDefault();
+// var course = context.Courses.Include(x => x.Topics).Where(x => x.Id == 6).FirstOrDefault();
+
+course.Topics.Add(new Topic()
+{
+    Name = "Newly Added Topic 1",
+    Duration = 0
+});
+context.SaveChanges();
+*/
+
+//___Table : Topics : (Topic Updating According to Course Id)___
+/*
+ApplicationDbContext context = new ApplicationDbContext();
+var course = context.Courses.Include(x => x.Topics).FirstOrDefault();
+
+// [?Q : Confused, Both of them are working]
+// course.Topics[3].Name = "up 1";  // [NOTE : Wrong way to update internal elements.]
+course.Topics.ToList()[3].Name = "up 2";
+course.Topics.ToList()[4].Name = "up to dlt 1";
+course.Topics.ToList()[4].Duration = 0;
+context.SaveChanges();
+*/
+
+
+/* ---------- Delete ---------- */
+
+// [NOTE: Course delete korle automatic Course Id wise Topics oe delete hoye jabe.]
+//___Table : Courses, Topics : (Course Delete -> Topics will be deleted automatically according to Course Id)___
+/*
+ApplicationDbContext context = new ApplicationDbContext();
+var course = context.Courses.Include(x => x.Topics).Where(x => x.Id == 6).FirstOrDefault();
+
+context.Courses.Remove(course);
+context.SaveChanges();
+*/
+
+//___Table : Courses, Topics : (Topic Delete according to Course Id)___
+/*
+ApplicationDbContext context = new ApplicationDbContext();
+var course = context.Courses.Include(x => x.Topics).FirstOrDefault();
+
+var topic5 = course.Topics[4];
+
+course.Topics.Remove(topic5);
+context.SaveChanges();
+*/
