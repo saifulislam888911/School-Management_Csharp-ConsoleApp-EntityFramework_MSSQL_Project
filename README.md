@@ -12,13 +12,13 @@ Version :
 Helped From : DevSkill Online-Class, Self-Practice, Self-Study.
 
 
-# Branch : ("DevWithNotes-02")
+# Branch : ("DevWithNotes-03")
 DevWithNotes : For Pushing working codes alongside with Comments & Notes. Always Upto Date. 
 
 
 # DevSkill : Professional Programming with C# :
 Batch : 15 ;
-Class : 19, 20 ;
+Class : 19, 20 (20.2) ;
 
 
 # Website :
