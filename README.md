@@ -12,14 +12,14 @@ Version :
 Helped From : DevSkill Online-Class, Self-Practice, Self-Study.
 
 
-Branch : ("Development-3")
+# Branch : ("Development-3")
 Development (DevWithNotes-06) : For Updating new features. Always Upto Date. Clean Codes (Delete Comments & Notes).
 
 
 # DevSkill : Professional Programming with C# :
 Batch : 15 ;
 Class : 19, 20 (20.1, 20.2, 20.3), 21 ;
-Study : Self-Practice ;
+Study : Self-Practice, Self-Study ;
 
 
 # Website :
