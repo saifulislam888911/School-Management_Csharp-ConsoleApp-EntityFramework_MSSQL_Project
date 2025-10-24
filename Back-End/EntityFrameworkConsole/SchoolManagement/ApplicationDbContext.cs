@@ -13,8 +13,13 @@ namespace SchoolManagement
 
         public ApplicationDbContext()
         {
+            /*
             _connectionString = "Server=ASUS-TUF\\SQLEXPRESS;Database=SchoolManagementDb;" +
     "User Id=Practice_Admin;Password=12345678;Trust Server Certificate=True;";
+            */
+
+            _connectionString = "Server=.\\SQLEXPRESS;Database=SchoolManagementDb;" +
+   "User Id=Practice_Admin;Password=12345678;Trust Server Certificate=True;";
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -35,6 +40,11 @@ namespace SchoolManagement
                ]
             */
             modelBuilder.Entity<Topic>().ToTable("Topics");
+
+            /* [NOTE: Entity er Property er ei Featuers ta apply er jonno abr new kore migrations generate korte hobe.
+               ]
+            */
+            modelBuilder.Entity<Topic>().Property(x => x.Name).IsRequired().HasMaxLength(20);
 
 
 
@@ -90,10 +100,52 @@ namespace SchoolManagement
                 .HasOne(x => x.Course)
                     .WithMany(y => y.Students)
                         .HasForeignKey(z => z.CourseId);
+
+
+
+
+
+            /* -------------------------------------------------------------
+               Topic : Seeding : Seeding some data by calling private method
+            ---------------------------------------------------------------- */
+            /* [NOTE : STEPS
+                       - Migration 1 : Entity : Teacher 
+                       - Migration 2 : Entity : Teacher : Data Seeding
+                       - Database Update : Table : Teacher : ef command (so that table can be created on Database with some seeded Data)
+               ]
+            */
+            modelBuilder.Entity<Teacher>().HasData(GetTeachers().ToArray());
         }
+
+
+
+
+
+        /* --------------------------------------------------------------- 
+           Topic : Seeding : Seeding some data by declaring private method
+        ------------------------------------------------------------------ */
+
+        private List<Teacher> GetTeachers()
+        {
+            return new List<Teacher>()
+            {
+                new Teacher()
+                {
+                    Id = -1, Name = "Teacher AAA", Username = "taaa", Password = "123456"
+                },
+                new Teacher()
+                {
+                     Id = -2, Name = "Teacher BBB", Username = "tbbb", Password = "123456"
+                }
+            };
+        }
+
+
+
 
 
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
     }
 }

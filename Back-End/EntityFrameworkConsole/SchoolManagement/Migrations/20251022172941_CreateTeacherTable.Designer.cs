@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagement;
 
@@ -11,9 +12,11 @@ using SchoolManagement;
 namespace SchoolManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251022172941_CreateTeacherTable")]
+    partial class CreateTeacherTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,22 +110,6 @@ namespace SchoolManagement.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teachers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = -1,
-                            Name = "Teacher AAA",
-                            Password = "123456",
-                            Username = "taaa"
-                        },
-                        new
-                        {
-                            Id = -2,
-                            Name = "Teacher BBB",
-                            Password = "123456",
-                            Username = "tbbb"
-                        });
                 });
 
             modelBuilder.Entity("SchoolManagement.Topic", b =>
@@ -141,8 +128,7 @@ namespace SchoolManagement.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
