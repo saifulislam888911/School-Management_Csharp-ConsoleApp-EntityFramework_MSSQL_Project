@@ -50,6 +50,24 @@ context.SaveChanges();
 */
 
 
+/* ---------------------------
+Topic : Single Table : Student
+------------------------------ */
+
+/* ---------- Insert ---------- */
+
+/*
+ApplicationDbContext context = new ApplicationDbContext();
+context.Teachers.Add(new Teacher()
+{
+    Name = "Teacher CCC",
+    Username = "tccc",
+    Password = "123456"
+});
+context.SaveChanges();
+*/
+
+
 /* ---------- Get ---------- */
 
 // ApplicationDbContext context = new ApplicationDbContext();
