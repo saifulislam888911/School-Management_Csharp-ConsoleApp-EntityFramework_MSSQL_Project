@@ -12,15 +12,14 @@ Version :
 Helped From : DevSkill Online-Class, Self-Practice, Self-Study.
 
 
-# Branch : ("main")
-Main : Stable Release & Version Update (For publishing new updated versions). 
-Development (DevWithNotes-05) : For Updating new features. Always Upto Date. Clean Codes (Delete Comments & Notes).
-DevWithNotes : For Pushing working codes alongside with Comments & Notes. Always Upto Date.
+Branch : ("Development-3")
+Development (DevWithNotes-06) : For Updating new features. Always Upto Date. Clean Codes (Delete Comments & Notes).
 
 
 # DevSkill : Professional Programming with C# :
 Batch : 15 ;
 Class : 19, 20 (20.1, 20.2, 20.3), 21 ;
+Study : Self-Practice ;
 
 
 # Website :
